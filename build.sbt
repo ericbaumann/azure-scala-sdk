@@ -19,6 +19,7 @@ developers := List(
     email="nlundin@headstorm.com", url=url("http://www.headstorm.com"))
 )
 
+
 parallelExecution in Test := false
 
 shellPrompt := { state => scala.Console.YELLOW + "[" + scala.Console.CYAN + Project.extract(state).currentProject.id + scala.Console.YELLOW + "]" + scala.Console.RED + " $ " + scala.Console.RESET }
@@ -60,6 +61,8 @@ val circeVersion                 = "0.13.0"
 val odinVersion                  = "0.7.0"
 
 val commonDependencies = Seq(
+  "com.beachape" %% "enumeratum" % "1.6.0",
+  "com.beachape" %% "enumeratum-circe" % "1.6.0",
   "io.circe" %% "circe-core" % circeVersion,
   "io.circe" %% "circe-generic" % circeVersion,
   "io.circe" %% "circe-parser" % circeVersion,
@@ -82,7 +85,10 @@ val commonDependencies = Seq(
   "com.github.valskalla" %% "odin-json" % odinVersion,
   "com.github.valskalla" %% "odin-extras" % odinVersion,
 
-  "org.scalatest" %% "scalatest" % "3.1.1" % "test"
+  "org.scalatest" %% "scalatest" % "3.1.1" % Test,
+  "org.typelevel" %% "cats-laws" % "2.0.0" % Test,
+  "org.typelevel" %% "discipline-core" % "1.0.0" % Test,
+  "org.typelevel" %% "discipline-scalatest" % "1.0.1" % Test
 )
 
 import com.scalapenos.sbt.prompt.SbtPrompt.autoImport._
